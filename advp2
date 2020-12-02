@@ -1,0 +1,59 @@
+
+file =open("passwords.txt")
+bokstavene = []
+bokstaven = []
+minVal = []
+maxVal = []
+
+for line in file:
+    line = line.replace("\n", "")
+    #line = line.replace(" ","")
+    #print(line.split(":"))
+    line = line.split(":")
+    line[1] = line[1].replace(" ", "") #Fjerner mellomrom
+    #print(line[1]) #Dette er bokstavene
+    bokstavene.append(line[1])
+
+    #må fikse hvordan jeg skal hente ut antallet bokstaven skal gjenta seg eller oppstå
+    #print(line[0])
+    splittet = line[0].split(" ")
+    #print(splittet[0])
+    bokstaven.append(splittet[1]) #legger til bokstav
+    splittettall = splittet[0].split("-")
+    #print(splittettall[1])
+    minVal.append(splittettall[0])# dele opp tallene i min og max
+    maxVal.append(splittettall[1])
+    #line = line.replace("\n","")
+    #print(line[0])
+
+teller = 0
+antallTrue = 0
+for bokstaver in bokstavene:
+    print("ny linje")
+    #teller = 0
+    #print(teller-1)
+    #print(bokstaven[teller])
+    #print(bokstaver)
+    #print(bokstaven[teller])
+    print("må være i posisjon", minVal[teller])
+    print("og må være i posisjon", maxVal[teller])
+    print(bokstaven[teller])
+    posisjon1 = int(minVal[teller]) - 1
+    posisjon2 = int(maxVal[teller]) -1
+    print(posisjon1)
+    print(posisjon2)
+    print(bokstaver)
+    if bokstaver[posisjon1] == bokstaven[teller] and bokstaver[posisjon2] != bokstaven[teller]:
+        print("true")
+        antallTrue +=1
+    if bokstaver[posisjon1] != bokstaven[teller] and bokstaver[posisjon2] == bokstaven[teller]:
+        antallTrue +=1
+      #  print("true")
+       # antallTrue +=1
+    #print(bokstaver[int(minVal[teller-1])])
+    #print(bokstaver[int(maxVal[teller-1])])
+    #print(bokstaver)
+    teller += 1
+#print("oppfylt antall ganger: ", oppfylt)
+
+print("antall true", antallTrue)
